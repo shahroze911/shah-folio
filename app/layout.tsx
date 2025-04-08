@@ -6,13 +6,6 @@ import CookieFix from "./next-cookie-fix";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Update accent color from primary (default is sky) to indigo and violet
-// for a more vibrant yet professional look
-const settings = {
-  accent: "indigo" as const,
-  secondaryAccent: "violet" as const,
-}
-
 export const metadata: Metadata = {
   title: "Shahroze | Full Stack Developer",
   description: "Full Stack Developer specializing in modern web technologies",
@@ -24,11 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

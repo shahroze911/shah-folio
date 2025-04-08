@@ -339,7 +339,7 @@ export function ContactSection() {
                         <Alert className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
                           <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                           <AlertDescription className="text-green-600 dark:text-green-400">
-                            Message sent successfully! I'll get back to you soon.
+                            Message sent successfully! I&apos;ll get back to you soon.
                           </AlertDescription>
                         </Alert>
                       </motion.div>

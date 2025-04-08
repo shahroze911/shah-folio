@@ -1,23 +1,39 @@
 "use client";
 
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
   Github, 
   Linkedin, 
+  Twitter, 
   Mail, 
+  ArrowDown, 
+  Code, 
+  Server, 
+  Database, 
+  Cloud, 
+  Zap, 
+  Sparkles, 
+  Star, 
+  Award, 
+  Briefcase, 
+  Rocket, 
+  Lightbulb, 
+  Heart, 
+  Coffee, 
+  Music, 
+  Palette, 
+  Globe, 
+  BookOpen, 
+  GraduationCap, 
+  CheckCircle, 
+  ArrowUpRight, 
+  ExternalLink,
   ArrowRight,
   Download,
-  Code2,
-  Sparkles,
-  ChevronDown,
-  ExternalLink,
-  Briefcase,
-  Users,
-  Award,
-  Globe
+  ChevronDown
 } from 'lucide-react';
 import Link from "next/link";
 import Image from "next/image";
@@ -78,8 +94,8 @@ const techTags = [
 
 const stats = [
   { icon: <Briefcase className="h-5 w-5" />, value: 5, label: "Years Experience" },
-  { icon: <Code2 className="h-5 w-5" />, label: "Projects Completed", value: 50 },
-  { icon: <Users className="h-5 w-5" />, label: "Happy Clients", value: 30 },
+  { icon: <Code className="h-5 w-5" />, label: "Projects Completed", value: 50 },
+  { icon: <Server className="h-5 w-5" />, label: "Happy Clients", value: 30 },
   { icon: <Award className="h-5 w-5" />, label: "Awards Won", value: 10 }
 ];
 

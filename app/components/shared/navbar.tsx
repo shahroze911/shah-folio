@@ -11,9 +11,8 @@ import { ThemeSwitch } from "./theme-switch";
 import { useTheme } from "next-themes";
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 

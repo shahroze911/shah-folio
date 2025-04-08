@@ -5,16 +5,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Code2, 
-  Smartphone, 
   Globe, 
+  Smartphone, 
   Database, 
   Shield, 
-  Zap,
-  ArrowRight,
   CheckCircle,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  ArrowRight
 } from 'lucide-react';
 
 const fadeInUp = {
@@ -129,7 +127,7 @@ export function ServicesSection() {
           className="text-center mb-12"
         >
           <motion.h2 variants={fadeInUp} className="text-3xl font-bold accent-title">
-            Services I'm Offering
+            Services I&apos;m Offering
           </motion.h2>
           <motion.div 
             variants={fadeInUp}

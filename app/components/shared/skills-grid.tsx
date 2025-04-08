@@ -19,15 +19,6 @@ import {
   Settings
 } from 'lucide-react';
 
-// Define the structure for skill items
-interface SkillItem {
-  name: string;
-  icon: React.ReactNode;
-  description: string;
-  level: number; // 1-5 for proficiency level
-  color: string;
-}
-
 // Organize skills by category
 const skillCategories = [
   {
@@ -266,18 +257,6 @@ const itemVariants = {
     transition: {
       type: 'spring',
       stiffness: 100
-    }
-  }
-};
-
-const cardVariants = {
-  hover: {
-    scale: 1.05,
-    boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 20
     }
   }
 };

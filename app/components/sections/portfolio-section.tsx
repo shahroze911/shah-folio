@@ -121,16 +121,6 @@ const imageHoverVariants = {
   }
 };
 
-// Improved badge hover effect with enhanced glow
-const badgeVariants = {
-  rest: { scale: 1 },
-  hover: { 
-    scale: 1.1, 
-    boxShadow: "0 0 15px rgba(99, 102, 241, 0.5)",
-    transition: { duration: 0.2 } 
-  }
-};
-
 // Portfolio project data with enhanced colors
 const projects = [
   {

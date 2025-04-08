@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Code2,
   Rocket,
@@ -20,7 +21,13 @@ import {
   Globe,
   ChevronRight,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Briefcase,
+  GraduationCap,
+  BookOpen,
+  Palette,
+  Star,
+  CheckCircle
 } from 'lucide-react';
 import Link from "next/link";
 import Image from "next/image";
@@ -128,7 +135,7 @@ const milestones = [
 ];
 
 export function AboutSection() {
-  const [activeTab, setActiveTab] = useState<'story' | 'interests'>('story');
+  const [activeTab, setActiveTab] = useState("personal");
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -193,14 +200,15 @@ export function AboutSection() {
                         My Story
                       </h3>
                       <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                        Hello! I'm Shahroze, a passionate Full Stack Developer based in Lahore, Pakistan. 
+                        Hello! I&apos;m Shahroze, a passionate Full Stack Developer based in Lahore, Pakistan. 
                         My journey into technology began with a curiosity about how things work on the internet, 
                         which evolved into a deep passion for building web applications that solve real-world problems.
                       </p>
                       <p className="text-zinc-600 dark:text-zinc-400">
-                        I believe in creating digital experiences that are not just functional, but also beautiful 
-                        and intuitive. Every project is an opportunity to learn something new and push the boundaries 
-                        of what's possible.
+                        I&apos;m passionate about creating elegant solutions to complex problems.
+                      </p>
+                      <p className="text-zinc-600 dark:text-zinc-400">
+                        I&apos;m always eager to learn new technologies and methodologies.
                       </p>
                     </div>
                   </div>
