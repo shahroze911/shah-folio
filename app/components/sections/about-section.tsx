@@ -1,36 +1,23 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Code2,
   Rocket,
   Lightbulb,
   Heart,
   Download,
-  MapPin,
-  Calendar,
   Coffee,
   Music,
   Book,
   Camera,
   Globe,
-  ChevronRight,
-  ArrowRight,
-  Sparkles,
-  Briefcase,
-  GraduationCap,
-  BookOpen,
-  Palette,
-  Star,
-  CheckCircle
+  Sparkles
 } from 'lucide-react';
 import Link from "next/link";
-import Image from "next/image";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -135,7 +122,6 @@ const milestones = [
 ];
 
 export function AboutSection() {
-  const [activeTab, setActiveTab] = useState("personal");
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

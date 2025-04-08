@@ -10,8 +10,6 @@ import {
   Database, 
   Shield, 
   CheckCircle,
-  ChevronDown,
-  ChevronUp,
   ArrowRight
 } from 'lucide-react';
 

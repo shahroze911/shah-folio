@@ -11,13 +11,12 @@ import {
   Send, 
   Github, 
   Linkedin, 
-  Twitter, 
   CheckCircle, 
   X,
-  ArrowRight,
   MessageSquare,
   User,
-  Loader2
+  Loader2,
+  Twitter
 } from 'lucide-react';
 import Link from "next/link";
 import { Card, CardContent } from '@/components/ui/card';
@@ -142,17 +141,15 @@ export function ContactSection() {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitStatus('success');
       setFormState({ name: '', email: '', message: '' });
       formRef.current?.reset();
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };
@@ -161,26 +158,26 @@ export function ContactSection() {
     {
       name: 'GitHub',
       icon: <Github className="h-5 w-5" />,
-      url: 'https://github.com/yourusername',
-      color: 'bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-700 dark:hover:bg-zinc-700'
+      url: 'https://github.com/shahroze911',
+      color: 'bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200'
     },
     {
       name: 'LinkedIn',
       icon: <Linkedin className="h-5 w-5" />,
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://www.linkedin.com/in/shahroze911/',
       color: 'bg-blue-600 hover:bg-blue-700'
     },
     {
       name: 'Twitter',
       icon: <Twitter className="h-5 w-5" />,
-      url: 'https://twitter.com/yourusername',
+      url: 'https://twitter.com/shahroze911',
       color: 'bg-sky-500 hover:bg-sky-600'
     },
     {
       name: 'Email',
       icon: <Mail className="h-5 w-5" />,
-      url: 'mailto:your.email@example.com',
-      color: 'bg-indigo-600 hover:bg-indigo-700'
+      url: 'mailto:shahroze911@gmail.com',
+      color: 'bg-red-500 hover:bg-red-600'
     }
   ];
 
