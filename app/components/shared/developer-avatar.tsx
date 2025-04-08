@@ -17,15 +17,6 @@ import {
   Server
 } from "lucide-react";
 
-// Define a more vibrant color scheme
-const colors = {
-  primary: "#6366F1", // Indigo
-  secondary: "#8B5CF6", // Violet
-  accent: "#EC4899", // Pink
-  light: "#F3F4F6",
-  dark: "#1F2937"
-};
-
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -49,10 +40,10 @@ const staggerContainer = {
 // Skills data
 const skills = [
   {
-    title: "Web Development",
+    title: "Frontend Development",
     icon: Code,
-    description: "Building responsive and interactive web applications using modern frameworks.",
-    color: "#6366F1"
+    description: "Building responsive and interactive user interfaces",
+    color: "#3B82F6"
   },
   {
     title: "Generative AI Apps",

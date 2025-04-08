@@ -23,6 +23,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -272,7 +273,15 @@ export function HeroSection() {
               className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto lg:mx-0"
               whileHover={{ scale: 1.02 }}
             >
-              As a Modern Full Stack Developer and Applied Cloud Generative AI Engineer with over 5 years of hands-on experience, I specialize in delivering comprehensive documentation and visualizations for efficient software development. Crafting standout websites and apps, I leverage cloud platforms to deploy AI models, enhancing business operations and user experiences.
+              I&apos;m passionate about creating elegant solutions to complex problems.
+            </motion.p>
+
+            <motion.p 
+              variants={fadeInUp} 
+              className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto lg:mx-0"
+              whileHover={{ scale: 1.02 }}
+            >
+              Let&apos;s build something amazing together!
             </motion.p>
 
             {/* Redesigned Stats Grid */}

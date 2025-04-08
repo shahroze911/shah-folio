@@ -6,12 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
   Code2, 
-  Database, 
-  Globe, 
-  Smartphone, 
-  Shield, 
   Zap,
-  Star,
   TrendingUp,
   Award,
   Target

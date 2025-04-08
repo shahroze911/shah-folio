@@ -8,11 +8,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { ThemeSwitch } from "./theme-switch";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
+  const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -58,8 +60,8 @@ export function Navbar() {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     // Close mobile menu if open
-    if (isOpen) {
-      setIsOpen(false);
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
     }
     
     // For # links, prevent default and do smooth scrolling manually
@@ -136,11 +138,11 @@ export function Navbar() {
         {/* Mobile navigation */}
         <div className="flex items-center md:hidden space-x-4">
           <ThemeSwitch />
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Menu" className="relative">
                 <AnimatePresence mode="wait">
-                  {isOpen ? (
+                  {isMobileMenuOpen ? (
                     <motion.div
                       key="close"
                       initial={{ opacity: 0, rotate: -90 }}

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowUpRight, X, Code2, Layout, Smartphone, FileText, Sparkles, Star, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 
 // Enhanced animations with more dynamic effects
 const fadeInUp = {
@@ -30,29 +30,34 @@ const staggerContainer = {
   }
 };
 
-// Enhanced card variants with more dynamic 3D effect
+// Enhanced card variants with smoother animations
 const cardVariants = {
-  hidden: { opacity: 0, y: 20, rotateX: -10 },
+  hidden: { 
+    opacity: 0, 
+    y: 20,
+    scale: 0.95
+  },
   visible: { 
     opacity: 1, 
     y: 0,
-    rotateX: 0,
-    transition: { 
-      duration: 0.5,
+    scale: 1,
+    transition: {
+      duration: 0.4,
       ease: "easeOut"
     }
   },
   hover: { 
-    y: -8,
-    scale: 1.02,
-    transition: { 
-      duration: 0.3,
-      ease: "easeOut" 
+    y: -5,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
     }
   },
-  tap: {
+  tap: { 
     scale: 0.98,
-    transition: { duration: 0.2 }
+    transition: {
+      duration: 0.1
+    }
   }
 };
 
@@ -92,21 +97,27 @@ const categories = [
   }
 ];
 
-// Enhanced portfolio card hover effects with more dynamic 3D tilt
+// Enhanced image hover variants with smoother animations
 const imageHoverVariants = {
   rest: { 
     scale: 1,
-    filter: "brightness(0.9)",
-    transition: { duration: 0.3, ease: "easeOut" }
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
   },
   hover: { 
-    scale: 1.07,
-    filter: "brightness(1.1)",
-    transition: { duration: 0.4, ease: "easeOut" }
+    scale: 1.05,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
   },
-  tap: {
-    scale: 0.95,
-    transition: { duration: 0.2 }
+  tap: { 
+    scale: 0.98,
+    transition: {
+      duration: 0.1
+    }
   }
 };
 
@@ -273,7 +284,6 @@ function TiltCard({ children, className }: { children: React.ReactNode, classNam
 export function PortfolioSection() {
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<null | typeof projects[0]>(null);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const dialogContentRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -386,19 +396,17 @@ export function PortfolioSection() {
                 <motion.div
                   key={project.id}
                   variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
                   whileHover="hover"
                   whileTap="tap"
-                  layout
-                  onHoverStart={() => setHoveredCard(project.id)}
-                  onHoverEnd={() => setHoveredCard(null)}
+                  className="group relative cursor-pointer"
+                  onClick={() => handleOpenProject(project)}
                 >
-                  <TiltCard>
-                    <Card 
-                      className="group relative overflow-hidden border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer glow-effect"
-                      onClick={() => handleOpenProject(project)}
-                    >
+                  <TiltCard className="h-full">
+                    <Card className="h-full overflow-hidden border-0 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
                       <CardContent className="p-0">
-                        {/* Project Image with enhanced effects */}
+                        {/* Project Image with smoother hover effect */}
                         <div className="relative h-48 overflow-hidden">
                           <div 
                             className="absolute inset-0" 
@@ -417,16 +425,18 @@ export function PortfolioSection() {
                               src={project.demoImage}
                               alt={project.title}
                               fill
-                              className="object-cover"
+                              className="object-cover transition-transform duration-300"
                             />
                           </motion.div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           
-                          {/* Project category badge with enhanced interactivity */}
+                          {/* Project category badge with smoother hover */}
                           <motion.div 
                             className="absolute top-3 right-3"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={(e) => e.stopPropagation()}
                           >
                             <Badge 
                               variant="secondary"
@@ -438,11 +448,13 @@ export function PortfolioSection() {
                             </Badge>
                           </motion.div>
                           
-                          {/* Year badge with enhanced interactivity */}
+                          {/* Year badge with smoother hover */}
                           <motion.div 
                             className="absolute top-3 left-3"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={(e) => e.stopPropagation()}
                           >
                             <Badge 
                               variant="outline"
@@ -452,11 +464,13 @@ export function PortfolioSection() {
                             </Badge>
                           </motion.div>
                           
-                          {/* View details button with enhanced interactivity */}
+                          {/* View details button with smoother hover */}
                           <motion.div 
-                            className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={(e) => e.stopPropagation()}
                           >
                             <Button 
                               size="sm" 
@@ -469,11 +483,11 @@ export function PortfolioSection() {
                           </motion.div>
                         </div>
 
-                        {/* Project Info with enhanced styling and interactivity */}
+                        {/* Project Info with smoother hover */}
                         <motion.div 
                           className="p-6"
                           whileHover={{ y: -5 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
                         >
                           <div className="mb-4">
                             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">

@@ -12,7 +12,9 @@ import {
   Shield, 
   Zap,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 const fadeInUp = {

@@ -1,16 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { 
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaPython, FaNodeJs, FaDocker, 
-  FaGithub, FaDatabase, FaMicrosoft, FaAws, FaCloud
+  FaHtml5, 
+  FaCss3Alt, 
+  FaJs, 
+  FaReact, 
+  FaNodeJs, 
+  FaPython, 
+  FaDocker, 
+  FaGithub, 
+  FaCloud, 
+  FaDatabase, 
+  FaMicrosoft 
 } from "react-icons/fa";
 import { 
-  SiTypescript, SiNextdotjs, SiTailwindcss, SiOpenai, 
-  SiGooglecloud, SiPostgresql, SiAppwrite
+  SiTypescript, 
+  SiNextdotjs, 
+  SiTailwindcss, 
+  SiPostgresql, 
+  SiOpenai, 
+  SiAppwrite, 
+  SiGooglecloud 
 } from "react-icons/si";
 import { Briefcase, GraduationCap } from "lucide-react";
 
