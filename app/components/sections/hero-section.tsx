@@ -246,7 +246,7 @@ export function HeroSection() {
             >
               <Badge variant="outline" className="px-4 py-1 text-sm font-medium bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-colors">
                 <Sparkles className="mr-2 h-4 w-4 animate-pulse" />
-                {greeting}! I'm Available for Freelance Work
+                {greeting}! I&apos;m Available for Freelance Work
               </Badge>
             </motion.div>
             
@@ -255,7 +255,7 @@ export function HeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
               whileHover={{ scale: 1.02 }}
             >
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="accent-title bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-600 animate-gradient">
                 Shahroze Kamran
               </span>
