@@ -1,45 +1,27 @@
 "use client";
 
-import { motion, useScroll, useTransform, MotionValue, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
   Github, 
-  Linkedin, 
-  Twitter, 
+  Linkedin,
   Mail, 
-  ArrowDown, 
   Code, 
   Server, 
-  Database, 
-  Cloud, 
-  Zap, 
   Sparkles, 
-  Star, 
   Award, 
   Briefcase, 
-  Rocket, 
-  Lightbulb, 
-  Heart, 
-  Coffee, 
-  Music, 
-  Palette, 
   Globe, 
-  BookOpen, 
-  GraduationCap, 
-  CheckCircle, 
-  ArrowUpRight, 
-  ExternalLink,
-  ArrowRight,
   Download,
-  ChevronDown
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react';
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -56,18 +38,6 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1
-    }
-  }
-};
-
-const bounceAnimation = {
-  initial: { y: 0 },
-  animate: {
-    y: [-5, 5, -5],
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-      ease: "easeInOut"
     }
   }
 };

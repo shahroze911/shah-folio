@@ -11,14 +11,13 @@ import {
   Send, 
   Github, 
   Linkedin, 
+  Twitter,
   CheckCircle, 
   X,
   MessageSquare,
   User,
-  Loader2,
-  Twitter
+  Loader2
 } from 'lucide-react';
-import Link from "next/link";
 import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 
