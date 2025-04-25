@@ -10,6 +10,49 @@ import Link from "next/link";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 
+// FallbackImage component to handle missing images
+const FallbackImage = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
+  const [error, setError] = useState(false);
+  
+  // Generate a gradient background based on project name
+  const generateGradient = () => {
+    const gradients = [
+      "bg-gradient-to-br from-indigo-500 to-violet-600",
+      "bg-gradient-to-br from-blue-500 to-indigo-600",
+      "bg-gradient-to-br from-purple-500 to-pink-600",
+      "bg-gradient-to-br from-emerald-500 to-teal-600",
+      "bg-gradient-to-br from-amber-500 to-orange-600"
+    ];
+    
+    // Use the alt text to deterministically select a gradient
+    const index = alt.length % gradients.length;
+    return gradients[index];
+  };
+  
+  if (error) {
+    return (
+      <div className={`relative w-full h-full min-h-[200px] flex items-center justify-center ${generateGradient()} rounded-lg ${className}`}>
+        <div className="text-white text-center p-4">
+          <Sparkles className="h-8 w-8 mx-auto mb-2" />
+          <p className="font-medium">{alt}</p>
+          <p className="text-xs mt-2 opacity-80">Project Image</p>
+        </div>
+      </div>
+    );
+  }
+  
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      className={className}
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      onError={() => setError(true)}
+    />
+  );
+};
+
 // Enhanced animations with more dynamic effects
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -397,81 +440,73 @@ export function PortfolioSection() {
                     <Card className="h-full overflow-hidden border-0 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
                       <CardContent className="p-0">
                         {/* Project Image with smoother hover effect */}
-                        <div className="relative h-48 overflow-hidden">
-                          <div 
-                            className="absolute inset-0" 
-                            style={{ 
-                              background: `linear-gradient(135deg, ${project.placeholderColor}80, ${project.placeholderColor})` 
-                            }}
-                          />
+                        <div className="relative aspect-video w-full rounded-t-lg overflow-hidden mb-4">
                           <motion.div
                             variants={imageHoverVariants}
                             initial="rest"
                             whileHover="hover"
                             whileTap="tap"
-                            className="relative h-full"
+                            className="h-full w-full"
                           >
-                            <Image
+                            <FallbackImage
                               src={project.demoImage}
                               alt={project.title}
-                              fill
-                              className="object-cover transition-transform duration-300"
+                              className="object-cover transition-transform"
                             />
                           </motion.div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          
-                          {/* Project category badge with smoother hover */}
-                          <motion.div 
-                            className="absolute top-3 right-3"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Badge 
-                              variant="secondary"
-                              className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
-                            >
-                              {project.category === 'web' && 'Web'}
-                              {project.category === 'app' && 'App'}
-                              {project.category === 'documentation' && 'Docs'}
-                            </Badge>
-                          </motion.div>
-                          
-                          {/* Year badge with smoother hover */}
-                          <motion.div 
-                            className="absolute top-3 left-3"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Badge 
-                              variant="outline"
-                              className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
-                            >
-                              {project.year}
-                            </Badge>
-                          </motion.div>
-                          
-                          {/* View details button with smoother hover */}
-                          <motion.div 
-                            className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.2 }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Button 
-                              size="sm" 
-                              variant="secondary"
-                              className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm shine-effect"
-                            >
-                              <ArrowUpRight className="h-4 w-4 mr-1" />
-                              View Details
-                            </Button>
-                          </motion.div>
                         </div>
+
+                        {/* Project category badge with smoother hover */}
+                        <motion.div 
+                          className="absolute top-3 right-3"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Badge 
+                            variant="secondary"
+                            className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
+                          >
+                            {project.category === 'web' && 'Web'}
+                            {project.category === 'app' && 'App'}
+                            {project.category === 'documentation' && 'Docs'}
+                          </Badge>
+                        </motion.div>
+                        
+                        {/* Year badge with smoother hover */}
+                        <motion.div 
+                          className="absolute top-3 left-3"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Badge 
+                            variant="outline"
+                            className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
+                          >
+                            {project.year}
+                          </Badge>
+                        </motion.div>
+                        
+                        {/* View details button with smoother hover */}
+                        <motion.div 
+                          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button 
+                            size="sm" 
+                            variant="secondary"
+                            className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm shine-effect"
+                          >
+                            <ArrowUpRight className="h-4 w-4 mr-1" />
+                            View Details
+                          </Button>
+                        </motion.div>
 
                         {/* Project Info with smoother hover */}
                         <motion.div 
@@ -583,35 +618,12 @@ export function PortfolioSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="h-56 md:h-72 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center rounded-md mb-4 overflow-hidden relative">
-                  <div 
-                    className="absolute inset-0 flex items-center justify-center" 
-                    style={{ 
-                      background: `linear-gradient(135deg, ${selectedProject.placeholderColor}80, ${selectedProject.placeholderColor})` 
-                    }}
-                  >
-                    <div className="text-white font-bold text-5xl drop-shadow-md">
-                      {selectedProject.title.split(' ').map(word => word[0]).join('')}
-                    </div>
-                  </div>
-                  
-                  {/* Project category and year badges */}
-                  <div className="absolute top-4 right-4 flex gap-2">
-                    <Badge 
-                      variant="secondary"
-                      className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
-                    >
-                      {selectedProject.category === 'web' && 'Web Development'}
-                      {selectedProject.category === 'app' && 'Mobile Application'}
-                      {selectedProject.category === 'documentation' && 'Technical Documentation'}
-                    </Badge>
-                    <Badge 
-                      variant="outline"
-                      className="bg-white/90 dark:bg-zinc-800/90 backdrop-blur-sm text-zinc-900 dark:text-zinc-100 border-0 shadow-sm"
-                    >
-                      {selectedProject.year}
-                    </Badge>
-                  </div>
+                <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-6">
+                  <FallbackImage
+                    src={selectedProject.demoImage}
+                    alt={selectedProject.title}
+                    className="object-cover"
+                  />
                 </div>
                 
                 <DialogHeader>

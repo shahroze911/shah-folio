@@ -9,7 +9,24 @@ if (typeof window !== 'undefined') {
     const cookieDescriptor = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie');
     if (cookieDescriptor && !cookieDescriptor.configurable) {
       // Create a safe getter/setter that uses the original methods but traps errors
-      Object.defineProperty(Document.prototype, '_originalCookie', cookieDescriptor);
+      Object.defineProperty(Document.prototype, '_originalCookie', {
+        get() {
+          try {
+            return cookieDescriptor.get?.call(this) || '';
+          } catch (e) {
+            console.warn('Error in original cookie getter:', e);
+            return '';
+          }
+        },
+        set(value) {
+          try {
+            cookieDescriptor.set?.call(this, value);
+          } catch (e) {
+            console.warn('Error in original cookie setter:', e);
+          }
+        },
+        configurable: true
+      });
       
       Object.defineProperty(Document.prototype, 'cookie', {
         get() {

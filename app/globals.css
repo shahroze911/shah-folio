@@ -122,7 +122,7 @@
   
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* For fixed header navigation */
+    scroll-padding-top: 80px; /* Adjust for fixed navbar height */
   }
   
   section {

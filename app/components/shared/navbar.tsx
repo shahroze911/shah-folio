@@ -46,6 +46,18 @@ export function Navbar() {
     };
   }, []);
 
+  // Close mobile menu when window is resized to desktop size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
@@ -55,6 +67,8 @@ export function Navbar() {
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
     // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
@@ -62,7 +76,6 @@ export function Navbar() {
     
     // For # links, prevent default and do smooth scrolling manually
     if (href.startsWith('#')) {
-      e.preventDefault();
       const targetId = href.replace('#', '');
       const targetElement = document.getElementById(targetId);
       
@@ -87,6 +100,7 @@ export function Navbar() {
         <Link
           href="/"
           className="font-bold text-2xl accent-title relative"
+          aria-label="Shahroze K.S - Home"
         >
           <span className="relative z-10">Shahroze K.S</span>
           <motion.div 
@@ -99,7 +113,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -110,6 +124,7 @@ export function Navbar() {
                   ? "text-indigo-600 dark:text-indigo-400 font-medium" 
                   : "text-zinc-700 hover:text-indigo-500 dark:text-zinc-300 dark:hover:text-indigo-400"
               }`}
+              aria-current={activeSection === link.href.replace('#', '') ? "page" : undefined}
             >
               {link.label}
               {activeSection === link.href.replace('#', '') && (
@@ -145,6 +160,7 @@ export function Navbar() {
                       animate={{ opacity: 1, rotate: 0 }}
                       exit={{ opacity: 0, rotate: 90 }}
                       transition={{ duration: 0.2 }}
+                      aria-hidden="true"
                     >
                       <X className="h-6 w-6" />
                     </motion.div>
@@ -155,6 +171,7 @@ export function Navbar() {
                       animate={{ opacity: 1, rotate: 0 }}
                       exit={{ opacity: 0, rotate: -90 }}
                       transition={{ duration: 0.2 }}
+                      aria-hidden="true"
                     >
                       <Menu className="h-6 w-6" />
                     </motion.div>
@@ -168,7 +185,7 @@ export function Navbar() {
                   <div className="font-bold text-2xl accent-title mb-1">Shahroze K.S</div>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">Full Stack Developer</p>
                 </div>
-                <nav className="flex flex-col p-6 space-y-6 flex-grow">
+                <nav className="flex flex-col p-6 space-y-6 flex-grow" aria-label="Mobile Navigation">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
@@ -179,13 +196,15 @@ export function Navbar() {
                           ? "text-indigo-600 dark:text-indigo-400 font-medium" 
                           : "text-zinc-700 hover:text-indigo-500 dark:text-zinc-300 dark:hover:text-indigo-400"
                       }`}
+                      aria-current={activeSection === link.href.replace('#', '') ? "page" : undefined}
                     >
                       <span>{link.label}</span>
-                      <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" />
+                      <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" aria-hidden="true" />
                       {activeSection === link.href.replace('#', '') && (
                         <motion.div 
                           layoutId="mobile-indicator"
                           className="absolute left-0 w-1 h-8 bg-indigo-500 rounded-r-md"
+                          aria-hidden="true"
                         />
                       )}
                     </Link>

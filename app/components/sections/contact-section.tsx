@@ -1,11 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from '@/components/ui/label';
+import emailjs from '@emailjs/browser';
 import { 
   Mail, 
   Send, 
@@ -90,6 +91,11 @@ export function ContactSection() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const formRef = useRef<HTMLFormElement>(null);
 
+  // Initialize EmailJS once on component mount
+  useEffect(() => {
+    emailjs.init("062QrqU8Enk1it5Q6");
+  }, []);
+
   const validateForm = () => {
     const newErrors = {
       name: '',
@@ -139,16 +145,45 @@ export function ContactSection() {
     if (!validateForm()) return;
     
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formState.name,
+        reply_to: formState.email,
+        message: formState.message
+      };
+
+      const result = await emailjs.send(
+        "service_mkyverp", // Service ID
+        "template_9wkoino", // Template ID
+        templateParams
+      );
+
+      console.log('Email sent successfully:', result.text);
+      
+      // Show success message
       setSubmitStatus('success');
+      
+      // Clear form
       setFormState({ name: '', email: '', message: '' });
-      formRef.current?.reset();
-    } catch {
+      
+      // Optional: track form submission event
+      if (typeof window !== 'undefined' && 'gtag' in window) {
+        // @ts-ignore
+        window.gtag?.('event', 'form_submission', {
+          'event_category': 'Contact',
+          'event_label': 'Contact Form'
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
+      
+      // Reset form status after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     }
   };

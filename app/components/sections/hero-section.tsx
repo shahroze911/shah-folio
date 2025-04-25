@@ -103,7 +103,7 @@ const socialLinks = [
 ];
 
 export function HeroSection() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   
@@ -189,16 +189,6 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center py-20 bg-white dark:bg-zinc-900/80 overflow-hidden"
     >
-      {/* Theme Toggle */}
-      <motion.button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="fixed top-4 right-4 p-2 rounded-full bg-white dark:bg-zinc-800 shadow-lg z-50"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-      </motion.button>
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
