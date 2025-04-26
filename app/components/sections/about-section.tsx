@@ -181,22 +181,19 @@ export function AboutSection() {
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shrink-0">
                       <Sparkles className="h-6 w-6" />
                     </div>
-                    <div>
+                    <div className="text-justify">
                       <h3 className="text-xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
                         My Story
                       </h3>
                       <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                        Hello! I&apos;m Shahroze, a passionate Full Stack Developer based in Lahore, Pakistan. 
-                        My journey into technology began with a curiosity about how things work on the internet, 
-                        which evolved into a deep passion for building web applications that solve real-world problems.
-                      </p>
+                        Hello! I&apos;m Shahroze Kamran Sahotra, a Modern Full Stack Developer based in Islamabad, Pakistan.         
+                        With over 5 years of hands-on experience, I specialize in delivering comprehensive documentation and visualizations for efficient software development.
+                      </p>                      
                       <p className="text-zinc-600 dark:text-zinc-400">
-                        I&apos;m passionate about creating elegant solutions to complex problems.
-                      </p>
-                      <p className="text-zinc-600 dark:text-zinc-400">
-                        I&apos;m always eager to learn new technologies and methodologies.
-                      </p>
-                    </div>
+                      Crafting standout websites and apps, I leverage cloud platforms to deploy AI models, enhancing business operations and user experiences. 
+                      I&apos;m passionate about creating elegant solutions to complex problems.
+                      </p>                      
+                                          </div>
                   </div>
                 </CardContent>
               </Card>

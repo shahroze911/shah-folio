@@ -65,41 +65,31 @@ const techTags = [
 const stats = [
   { icon: <Briefcase className="h-5 w-5" />, value: 5, label: "Years Experience" },
   { icon: <Code className="h-5 w-5" />, label: "Projects Completed", value: 50 },
-  { icon: <Server className="h-5 w-5" />, label: "Happy Clients", value: 30 },
-  { icon: <Award className="h-5 w-5" />, label: "Awards Won", value: 10 }
+  { icon: <Server className="h-5 w-5" />, label: "Happy Clients", value: 15 },
+  
 ];
 
 const socialLinks = [
   { 
-    icon: <Github className="h-5 w-5" />, 
+    icon: <Github className="h-12 w-12" />, 
     href: "https://github.com/shahroze911", 
     label: "GitHub", 
     color: "text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-800" 
   },
   { 
-    icon: <Linkedin className="h-5 w-5" />, 
+    icon: <Linkedin className="h-10 w-10" />, 
     href: "https://linkedin.com/in/shahroze-kamran-sahotra", 
     label: "LinkedIn", 
     color: "text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20" 
   },
   { 
-    icon: <Mail className="h-5 w-5" />, 
+    icon: <Mail className="h-10 w-10" />, 
     href: "mailto:sksahotra911@gmail.com", 
     label: "Email", 
     color: "text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20" 
   },
-  { 
-    icon: <Globe className="h-5 w-5" />, 
-    href: "https://www.upwork.com/freelancers/@shahroze", 
-    label: "Upwork", 
-    color: "text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20" 
-  },
-  { 
-    icon: <Globe className="h-5 w-5" />, 
-    href: "https://www.fiverr.com/shahrozesahotra", 
-    label: "Fiverr", 
-    color: "text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20" 
-  }
+  
+  
 ];
 
 export function HeroSection() {
@@ -217,7 +207,7 @@ export function HeroSection() {
             >
               Hi, I&apos;m{" "}
               <span className="accent-title bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-violet-600 animate-gradient">
-                Shahroze Kamran
+                Shahroze Kamran Sahotra
               </span>
             </motion.h1>
             
@@ -242,16 +232,7 @@ export function HeroSection() {
                 )}
                 <span className="inline-block w-1 h-6 ml-1 bg-indigo-600 dark:bg-indigo-400 animate-blink"></span>
               </motion.h2>
-            </motion.div>
-            
-            <motion.p 
-              variants={fadeInUp} 
-              className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto lg:mx-0"
-              whileHover={{ scale: 1.02 }}
-            >
-              I&apos;m passionate about creating elegant solutions to complex problems.
-            </motion.p>
-
+            </motion.div>                        
             <motion.p 
               variants={fadeInUp} 
               className="text-lg text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto lg:mx-0"
@@ -363,7 +344,7 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-zinc-800 shadow-xl">
                 <Image
-                  src="/images/profile.jpg"
+                  src="/images/p2.png"
                   alt="Shahroze Kamran"
                   fill
                   className="object-cover"
@@ -374,8 +355,8 @@ export function HeroSection() {
                   whileHover={{ opacity: 0.9 }}
                 >
                   <div className="text-center text-white px-4">
-                    <p className="font-semibold mb-2">Full Stack Developer</p>
-                    <p className="text-sm">Based in Lahore, Pakistan</p>
+                    <p className="font-semibold mb-2">Modern Full Stack Developer</p>
+                    <p className="text-sm">Based in Islamabad, Pakistan</p>
                   </div>
                 </motion.div>
               </div>
