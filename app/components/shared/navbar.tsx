@@ -148,6 +148,13 @@ export function Navbar() {
 
         {/* Mobile navigation */}
         <div className="flex items-center md:hidden space-x-4">
+          <Link
+            href="/"
+            className="font-bold text-xl accent-title"
+            aria-label="Shahroze K.S - Home"
+          >
+            Shahroze K.S
+          </Link>
           <ThemeSwitch />
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
