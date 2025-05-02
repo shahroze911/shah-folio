@@ -150,10 +150,17 @@ export function Navbar() {
         <div className="flex items-center md:hidden space-x-4">
           <Link
             href="/"
-            className="font-bold text-xl accent-title"
+            className="font-bold text-xl accent-title relative"
             aria-label="Shahroze K.S - Home"
           >
-            Shahroze K.S
+            <span className="relative z-10">Shahroze K.S</span>
+            <motion.div 
+              className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 -z-0" 
+              layoutId="logo-highlight-mobile"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
           </Link>
           <ThemeSwitch />
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
