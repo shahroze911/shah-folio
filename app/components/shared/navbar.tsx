@@ -156,7 +156,7 @@ export function Navbar() {
           >
             <span className="relative z-10">Shahroze K.S</span>
             <motion.div 
-              className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 -z-0" 
+              className="absolute -inset-1 rounded-md -z-0" 
               layoutId="logo-highlight-mobile"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
