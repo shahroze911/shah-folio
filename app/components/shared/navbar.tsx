@@ -147,7 +147,7 @@ export function Navbar() {
         </nav>
 
         {/* Mobile navigation */}
-        <div className="flex items-center md:hidden space-x-4">
+        <div className="flex items-center md:hidden space-x-4 flex-1 justify-start">
           <Link
             href="/"
             className="font-bold text-xl accent-title relative"
