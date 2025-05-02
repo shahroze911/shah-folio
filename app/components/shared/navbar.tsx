@@ -99,7 +99,7 @@ export function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link
           href="/"
-          className="font-bold text-2xl accent-title relative"
+          className="hidden md:inline-flex font-bold text-2xl accent-title relative"
           aria-label="Shahroze K.S - Home"
         >
           <span className="relative z-10">Shahroze K.S</span>
@@ -147,7 +147,8 @@ export function Navbar() {
         </nav>
 
         {/* Mobile navigation */}
-        <div className="flex items-center md:hidden space-x-4 flex-1 justify-start">
+        <div className="flex items-center md:hidden w-full justify-between">
+          {/* Left: Name */}
           <Link
             href="/"
             className="font-bold text-xl accent-title relative"
@@ -162,78 +163,81 @@ export function Navbar() {
               transition={{ duration: 0.3 }}
             />
           </Link>
-          <ThemeSwitch />
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Menu" className="relative">
-                <AnimatePresence mode="wait">
-                  {isMobileMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ opacity: 0, rotate: -90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: 90 }}
-                      transition={{ duration: 0.2 }}
-                      aria-hidden="true"
-                    >
-                      <X className="h-6 w-6" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ opacity: 0, rotate: 90 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: -90 }}
-                      transition={{ duration: 0.2 }}
-                      aria-hidden="true"
-                    >
-                      <Menu className="h-6 w-6" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white dark:bg-zinc-900 p-0">
-              <div className="flex flex-col h-full">
-                <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
-                  <div className="font-bold text-2xl accent-title mb-1">Shahroze K.S</div>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">Full Stack Developer</p>
+          {/* Right: Theme switch and menu */}
+          <div className="flex items-center space-x-4">
+            <ThemeSwitch />
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="Menu" className="relative">
+                  <AnimatePresence mode="wait">
+                    {isMobileMenuOpen ? (
+                      <motion.div
+                        key="close"
+                        initial={{ opacity: 0, rotate: -90 }}
+                        animate={{ opacity: 1, rotate: 0 }}
+                        exit={{ opacity: 0, rotate: 90 }}
+                        transition={{ duration: 0.2 }}
+                        aria-hidden="true"
+                      >
+                        <X className="h-6 w-6" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu"
+                        initial={{ opacity: 0, rotate: 90 }}
+                        animate={{ opacity: 1, rotate: 0 }}
+                        exit={{ opacity: 0, rotate: -90 }}
+                        transition={{ duration: 0.2 }}
+                        aria-hidden="true"
+                      >
+                        <Menu className="h-6 w-6" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white dark:bg-zinc-900 p-0">
+                <div className="flex flex-col h-full">
+                  <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
+                    <div className="font-bold text-2xl accent-title mb-1">Shahroze K.S</div>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">Full Stack Developer</p>
+                  </div>
+                  <nav className="flex flex-col p-6 space-y-6 flex-grow" aria-label="Mobile Navigation">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={(e) => handleLinkClick(e, link.href)}
+                        className={`text-xl flex items-center group transition-colors ${
+                          activeSection === link.href.replace('#', '') 
+                            ? "text-indigo-600 dark:text-indigo-400 font-medium" 
+                            : "text-zinc-700 hover:text-indigo-500 dark:text-zinc-300 dark:hover:text-indigo-400"
+                        }`}
+                        aria-current={activeSection === link.href.replace('#', '') ? "page" : undefined}
+                      >
+                        <span>{link.label}</span>
+                        <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" aria-hidden="true" />
+                        {activeSection === link.href.replace('#', '') && (
+                          <motion.div 
+                            layoutId="mobile-indicator"
+                            className="absolute left-0 w-1 h-8 bg-indigo-500 rounded-r-md"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </Link>
+                    ))}
+                  </nav>
+                  <div className="p-6 border-t border-zinc-200 dark:border-zinc-800">
+                    <Button asChild className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700">
+                      <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>
+                        Hire Me
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
-                <nav className="flex flex-col p-6 space-y-6 flex-grow" aria-label="Mobile Navigation">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      className={`text-xl flex items-center group transition-colors ${
-                        activeSection === link.href.replace('#', '') 
-                          ? "text-indigo-600 dark:text-indigo-400 font-medium" 
-                          : "text-zinc-700 hover:text-indigo-500 dark:text-zinc-300 dark:hover:text-indigo-400"
-                      }`}
-                      aria-current={activeSection === link.href.replace('#', '') ? "page" : undefined}
-                    >
-                      <span>{link.label}</span>
-                      <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" aria-hidden="true" />
-                      {activeSection === link.href.replace('#', '') && (
-                        <motion.div 
-                          layoutId="mobile-indicator"
-                          className="absolute left-0 w-1 h-8 bg-indigo-500 rounded-r-md"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </Link>
-                  ))}
-                </nav>
-                <div className="p-6 border-t border-zinc-200 dark:border-zinc-800">
-                  <Button asChild className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700">
-                    <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>
-                      Hire Me
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
