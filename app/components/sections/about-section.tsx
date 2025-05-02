@@ -52,18 +52,7 @@ const timelineVariants = {
 };
 
 const interests = [
-  {
-    title: "Coffee Enthusiast",
-    description: "Exploring different coffee brewing methods and flavors",
-    icon: <Coffee className="h-5 w-5" />,
-    color: "from-amber-500 to-orange-600"
-  },
-  {
-    title: "Music Lover",
-    description: "Playing guitar and discovering new genres",
-    icon: <Music className="h-5 w-5" />,
-    color: "from-purple-500 to-pink-600"
-  },
+  
   {
     title: "Bookworm",
     description: "Reading tech books and sci-fi novels",
@@ -112,13 +101,7 @@ const milestones = [
     icon: <Lightbulb className="h-5 w-5" />,
     color: "from-amber-500 to-orange-600"
   },
-  {
-    year: "2020",
-    title: "First Professional Role",
-    description: "Started my journey as a professional developer",
-    icon: <Heart className="h-5 w-5" />,
-    color: "from-red-500 to-rose-600"
-  }
+  
 ];
 
 export function AboutSection() {
@@ -185,12 +168,11 @@ export function AboutSection() {
                       <h3 className="text-xl font-semibold mb-2 text-zinc-900 dark:text-zinc-50">
                         My Story
                       </h3>
-                      <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                        Hello! I&apos;m Shahroze Kamran Sahotra, a Modern Full Stack Developer based in Islamabad, Pakistan.         
-                        With over 5 years of hands-on experience, I specialize in delivering comprehensive documentation and visualizations for efficient software development.
+                      <p className="text-zinc-600 dark:text-zinc-400 mb-4">                       
+                        With over 5 years of hands-on experience, I specialize Crafting standout websites and apps, I leverage cloud platforms to deploy AI models, enhancing business operations and user experiences. 
+                      
                       </p>                      
                       <p className="text-zinc-600 dark:text-zinc-400">
-                      Crafting standout websites and apps, I leverage cloud platforms to deploy AI models, enhancing business operations and user experiences. 
                       I&apos;m passionate about creating elegant solutions to complex problems.
                       </p>                      
                                           </div>

@@ -64,8 +64,8 @@ const techTags = [
 
 const stats = [
   { icon: <Briefcase className="h-5 w-5" />, value: 5, label: "Years Experience" },
-  { icon: <Code className="h-5 w-5" />, label: "Projects Completed", value: 50 },
-  { icon: <Server className="h-5 w-5" />, label: "Happy Clients", value: 15 },
+  { icon: <Code className="h-5 w-5" />, label: "Projects Completed", value: 30 },
+  { icon: <Server className="h-5 w-5" />, label: "Happy Clients", value: 10 },
   
 ];
 
