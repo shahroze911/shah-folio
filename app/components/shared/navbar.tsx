@@ -97,7 +97,7 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        {/* Desktop Logo - More robust implementation */}
+        {/* Desktop Logo */}
         <div className="hidden md:block">
           <Link
             href="/"
@@ -128,38 +128,7 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Logo - More robust implementation */}
-        <div className="md:hidden">
-          <Link
-            href="/"
-            className="relative inline-flex items-center font-bold text-xl"
-            aria-label="Shahroze K.S - Home"
-          >
-            <span 
-              className="relative z-20 px-2 py-1 text-zinc-900 dark:text-white"
-              style={{ 
-                textShadow: isScrolled 
-                  ? 'none' 
-                  : '0 0 20px rgba(99, 102, 241, 0.1)'
-              }}
-            >
-              Shahroze K.S
-            </span>
-            <motion.div 
-              className="absolute inset-0 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10"
-              layoutId="logo-highlight-mobile"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                backdropFilter: 'blur(4px)',
-                WebkitBackdropFilter: 'blur(4px)'
-              }}
-            />
-          </Link>
-        </div>
-
-        {/* Desktop navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
           {navLinks.map((link) => (
             <Link
@@ -193,14 +162,48 @@ export function Navbar() {
           </Button>
         </nav>
 
-        {/* Mobile navigation */}
-        <div className="flex items-center md:hidden w-full justify-between">
-          {/* Right: Theme switch and menu */}
+        {/* Mobile Navigation */}
+        <div className="flex md:hidden items-center justify-between w-full">
+          {/* Mobile Logo */}
+          <Link
+            href="/"
+            className="relative inline-flex items-center font-bold text-xl"
+            aria-label="Shahroze K.S - Home"
+          >
+            <span 
+              className="relative z-20 px-2 py-1 text-zinc-900 dark:text-white"
+              style={{ 
+                textShadow: isScrolled 
+                  ? 'none' 
+                  : '0 0 20px rgba(99, 102, 241, 0.1)'
+              }}
+            >
+              Shahroze K.S
+            </span>
+            <motion.div 
+              className="absolute inset-0 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10"
+              layoutId="logo-highlight-mobile"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                backdropFilter: 'blur(4px)',
+                WebkitBackdropFilter: 'blur(4px)'
+              }}
+            />
+          </Link>
+
+          {/* Mobile Menu Button and Theme Switch */}
           <div className="flex items-center space-x-4">
             <ThemeSwitch />
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Menu" className="relative">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="relative"
+                  aria-label="Toggle menu"
+                >
                   <AnimatePresence mode="wait">
                     {isMobileMenuOpen ? (
                       <motion.div
@@ -209,7 +212,6 @@ export function Navbar() {
                         animate={{ opacity: 1, rotate: 0 }}
                         exit={{ opacity: 0, rotate: 90 }}
                         transition={{ duration: 0.2 }}
-                        aria-hidden="true"
                       >
                         <X className="h-6 w-6" />
                       </motion.div>
@@ -220,7 +222,6 @@ export function Navbar() {
                         animate={{ opacity: 1, rotate: 0 }}
                         exit={{ opacity: 0, rotate: -90 }}
                         transition={{ duration: 0.2 }}
-                        aria-hidden="true"
                       >
                         <Menu className="h-6 w-6" />
                       </motion.div>
@@ -228,7 +229,11 @@ export function Navbar() {
                   </AnimatePresence>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white dark:bg-zinc-900 p-0">
+              <SheetContent 
+                side="right" 
+                className="w-[300px] sm:w-[400px] p-0"
+                onOpenAutoFocus={(e) => e.preventDefault()}
+              >
                 <div className="flex flex-col h-full">
                   <div className="p-6 border-b border-zinc-200 dark:border-zinc-800">
                     <div className="font-bold text-2xl accent-title mb-1">Shahroze K.S</div>
@@ -248,33 +253,23 @@ export function Navbar() {
                         aria-current={activeSection === link.href.replace('#', '') ? "page" : undefined}
                       >
                         <span>{link.label}</span>
-                        <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" aria-hidden="true" />
+                        <ChevronDown className="ml-auto h-5 w-5 transition-transform group-hover:rotate-180" />
                         {activeSection === link.href.replace('#', '') && (
                           <motion.div 
                             layoutId="mobile-indicator"
                             className="absolute left-0 w-1 h-8 bg-indigo-500 rounded-r-md"
-                            aria-hidden="true"
                           />
                         )}
                       </Link>
                     ))}
                   </nav>
-                  <div className="p-6 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
-                    <Button
-                      variant="outline"
-                      className="w-full flex items-center justify-center space-x-2"
-                      asChild
-                    >
-                      <Link href="/resume.pdf" download>
-                        <span>Download Resume</span>
-                      </Link>
-                    </Button>
+                  <div className="p-6 border-t border-zinc-200 dark:border-zinc-800">
                     <Button 
                       asChild 
                       className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700"
                     >
                       <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>
-                        <span>Hire Me</span>
+                        Hire Me
                       </Link>
                     </Button>
                   </div>
