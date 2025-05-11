@@ -92,19 +92,19 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm"
+          ? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-sm shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link
           href="/"
-          className="font-bold text-2xl accent-title relative"
+          className="hidden md:inline-flex font-bold text-2xl accent-title relative"
           aria-label="Shahroze K.S - Home"
         >
-          <span className="relative z-10">Shahroze K.S</span>
+          <span className="relative z-20">Shahroze K.S</span>
           <motion.div 
-            className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 -z-0" 
+            className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10" 
             layoutId="logo-highlight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -154,9 +154,9 @@ export function Navbar() {
             className="font-bold text-xl accent-title relative"
             aria-label="Shahroze K.S - Home"
           >
-            <span className="relative z-10">Shahroze K.S</span>
+            <span className="relative z-20">Shahroze K.S</span>
             <motion.div 
-              className="absolute -inset-1 rounded-md -z-0" 
+              className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10" 
               layoutId="logo-highlight-mobile"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
