@@ -97,20 +97,67 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <Link
-          href="/"
-          className="hidden md:inline-flex font-bold text-2xl accent-title relative"
-          aria-label="Shahroze K.S - Home"
-        >
-          <span className="relative z-20">Shahroze K.S</span>
-          <motion.div 
-            className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10" 
-            layoutId="logo-highlight"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-        </Link>
+        {/* Desktop Logo - More robust implementation */}
+        <div className="hidden md:block">
+          <Link
+            href="/"
+            className="relative inline-flex items-center font-bold text-2xl"
+            aria-label="Shahroze K.S - Home"
+          >
+            <span 
+              className="relative z-20 px-2 py-1 text-zinc-900 dark:text-white"
+              style={{ 
+                textShadow: isScrolled 
+                  ? 'none' 
+                  : '0 0 20px rgba(99, 102, 241, 0.1)'
+              }}
+            >
+              Shahroze K.S
+            </span>
+            <motion.div 
+              className="absolute inset-0 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10"
+              layoutId="logo-highlight"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                backdropFilter: 'blur(4px)',
+                WebkitBackdropFilter: 'blur(4px)'
+              }}
+            />
+          </Link>
+        </div>
+
+        {/* Mobile Logo - More robust implementation */}
+        <div className="md:hidden">
+          <Link
+            href="/"
+            className="relative inline-flex items-center font-bold text-xl"
+            aria-label="Shahroze K.S - Home"
+          >
+            <span 
+              className="relative z-20 px-2 py-1 text-zinc-900 dark:text-white"
+              style={{ 
+                textShadow: isScrolled 
+                  ? 'none' 
+                  : '0 0 20px rgba(99, 102, 241, 0.1)'
+              }}
+            >
+              Shahroze K.S
+            </span>
+            <motion.div 
+              className="absolute inset-0 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10"
+              layoutId="logo-highlight-mobile"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                backdropFilter: 'blur(4px)',
+                WebkitBackdropFilter: 'blur(4px)'
+              }}
+            />
+          </Link>
+        </div>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
@@ -148,21 +195,6 @@ export function Navbar() {
 
         {/* Mobile navigation */}
         <div className="flex items-center md:hidden w-full justify-between">
-          {/* Left: Name */}
-          <Link
-            href="/"
-            className="font-bold text-xl accent-title relative"
-            aria-label="Shahroze K.S - Home"
-          >
-            <span className="relative z-20">Shahroze K.S</span>
-            <motion.div 
-              className="absolute -inset-1 rounded-md bg-indigo-100/50 dark:bg-indigo-900/20 z-10" 
-              layoutId="logo-highlight-mobile"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          </Link>
           {/* Right: Theme switch and menu */}
           <div className="flex items-center space-x-4">
             <ThemeSwitch />
@@ -227,10 +259,22 @@ export function Navbar() {
                       </Link>
                     ))}
                   </nav>
-                  <div className="p-6 border-t border-zinc-200 dark:border-zinc-800">
-                    <Button asChild className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700">
+                  <div className="p-6 border-t border-zinc-200 dark:border-zinc-800 space-y-4">
+                    <Button
+                      variant="outline"
+                      className="w-full flex items-center justify-center space-x-2"
+                      asChild
+                    >
+                      <Link href="/resume.pdf" download>
+                        <span>Download Resume</span>
+                      </Link>
+                    </Button>
+                    <Button 
+                      asChild 
+                      className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700"
+                    >
                       <Link href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>
-                        Hire Me
+                        <span>Hire Me</span>
                       </Link>
                     </Button>
                   </div>
