@@ -99,7 +99,7 @@ export function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link
           href="/"
-          className="hidden md:inline-flex font-bold text-2xl accent-title relative"
+          className="font-bold text-2xl accent-title relative"
           aria-label="Shahroze K.S - Home"
         >
           <span className="relative z-10">Shahroze K.S</span>
